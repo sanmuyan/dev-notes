@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "1f3c70efc1802bc9",
+        "id": "267b89e1b0554015",
         "type": "tabs",
         "children": [
           {
-            "id": "3eb88034b8b8b16a",
+            "id": "4a83d5e21caf73d3",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "blog/openresty 例子.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "blog/openresty 例子.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "blog/openresty 例子.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "blog/openresty 例子.md"
+              }
             }
           }
         ],
@@ -131,26 +139,53 @@
   "left-ribbon": {
     "hiddenItems": {
       "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
-      "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "graph:查看关系图谱": true,
+      "canvas:新建白板": true,
+      "daily-notes:打开/创建今天的日记": true,
+      "templates:插入模板": true,
+      "command-palette:打开命令面板": true,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "3eb88034b8b8b16a",
+  "active": "4a83d5e21caf73d3",
   "lastOpenFiles": [
-    "document/vim.md",
-    "document/rust.md",
+    "command/powershell.md",
+    "blog/openresty 例子.md",
+    "document/lua.md",
+    "command/redis.md",
+    "blog/hadoop3.x 部署.md",
+    "document/mysql.md",
     "document/cloud-native.md",
-    "document/database.md",
-    "document/golang.md",
+    "document/zookeeper.md",
+    "static/Pasted image 20230324152314.png",
+    "static/Pasted image 20230324152143.png",
+    "static/Pasted image 20230324152032.png",
+    "static/Pasted image 20230324150640.png",
+    "static/Pasted image 20230324150537.png",
+    "static/Pasted image 20230324150410.png",
+    "static/Pasted image 20230324150219.png",
     "document/netwrok.md",
-    "document/os.md",
+    "static/Pasted image 20230324111732.png",
+    "static/Pasted image 20230324111453.png",
+    "static/Pasted image 20230324111341.png",
+    "document/redis.md",
+    "document/vim.md",
     "document/python.md",
+    "blog/数据结构适用场景.md",
     "document/shell.md",
-    "2023-03-16.md",
+    "document/rust.md",
+    "static%2FPasted image 20230323151619.png.md",
+    "README.md",
+    "document/golang.md",
+    "static",
+    "Pasted image 20230323135602.png.md",
+    "Pasted image 20230323134312.png.md",
+    "command/mysql.md",
+    "document/database.md",
     "document/java.md",
-    "blog/电脑常用设置.md"
+    "document/os.md",
+    "command/linux.md",
+    "blog/wsl安装配置.md",
+    "未命名.canvas"
   ]
 }

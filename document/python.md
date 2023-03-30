@@ -345,7 +345,7 @@ Python会先标记需要GC的对象，当标记数量达到阀值的时候在统
 - 独立对象，相同子对象  
 - 独立对象
 
-![avatar](../img/py内存-1.jpg)
+![avatar](../static/py内存-1.jpg)
 
 ```python
 # -*- coding: utf-8 -*-

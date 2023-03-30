@@ -2,5 +2,13 @@
   "strictLineBreaks": false,
   "spellcheck": false,
   "showLineNumber": true,
-  "promptDelete": false
+  "promptDelete": false,
+  "livePreview": true,
+  "defaultViewMode": "source",
+  "attachmentFolderPath": "/static",
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "relative",
+  "showUnsupportedFiles": false,
+  "useMarkdownLinks": true,
+  "autoConvertHtml": false
 }
