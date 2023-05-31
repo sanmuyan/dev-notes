@@ -23,6 +23,10 @@ type key
 
 # 返回所有k
 keys *
+keys key*
+
+# 迭代 key
+scan 0 MATCH key* COUNT 1000
 
 # 随机返回一个key
 randomkey

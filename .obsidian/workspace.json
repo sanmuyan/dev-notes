@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "267b89e1b0554015",
+        "id": "fa7b291be0899510",
         "type": "tabs",
         "children": [
           {
-            "id": "4a83d5e21caf73d3",
+            "id": "6e3bcac91fe9aba1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/openresty 例子.md",
+                "file": "blog/命名规范.md",
                 "mode": "source",
                 "source": false
               }
@@ -64,6 +64,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "ef63c9bea345f04d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -85,9 +93,9 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/openresty 例子.md",
-                "collapseAll": false,
-                "extraContext": false,
+                "file": "blog/命名规范.md",
+                "collapseAll": true,
+                "extraContext": true,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
@@ -102,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/openresty 例子.md",
+                "file": "blog/命名规范.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,16 +133,24 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/openresty 例子.md"
+                "file": "blog/命名规范.md"
               }
             }
+          },
+          {
+            "id": "1a292af3747645b3",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -143,19 +159,28 @@
       "canvas:新建白板": true,
       "daily-notes:打开/创建今天的日记": true,
       "templates:插入模板": true,
-      "command-palette:打开命令面板": true,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "command-palette:打开命令面板": true
     }
   },
-  "active": "4a83d5e21caf73d3",
+  "active": "d5f625936a25b508",
   "lastOpenFiles": [
-    "command/powershell.md",
-    "blog/openresty 例子.md",
-    "document/lua.md",
-    "command/redis.md",
-    "blog/hadoop3.x 部署.md",
-    "document/mysql.md",
     "document/cloud-native.md",
+    "blog/命名规范.md",
+    "document/python.md",
+    "document/shell.md",
+    "command/redis.md",
+    "command/powershell.md",
+    "command/mysql.md",
+    "command/linux.md",
+    "README.md",
+    "document/lua.md",
+    "document/java.md",
+    "document/vim.md",
+    "blog/vue学习.md",
+    "document/rust.md",
+    "blog/hadoop3.x 部署.md",
+    "blog/openresty 例子.md",
+    "document/mysql.md",
     "document/zookeeper.md",
     "static/Pasted image 20230324152314.png",
     "static/Pasted image 20230324152143.png",
@@ -169,23 +194,13 @@
     "static/Pasted image 20230324111453.png",
     "static/Pasted image 20230324111341.png",
     "document/redis.md",
-    "document/vim.md",
-    "document/python.md",
     "blog/数据结构适用场景.md",
-    "document/shell.md",
-    "document/rust.md",
     "static%2FPasted image 20230323151619.png.md",
-    "README.md",
     "document/golang.md",
     "static",
     "Pasted image 20230323135602.png.md",
     "Pasted image 20230323134312.png.md",
-    "command/mysql.md",
     "document/database.md",
-    "document/java.md",
-    "document/os.md",
-    "command/linux.md",
-    "blog/wsl安装配置.md",
     "未命名.canvas"
   ]
 }
