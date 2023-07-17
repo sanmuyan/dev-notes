@@ -77,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "c115237836eb36b2",
@@ -145,12 +146,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -162,12 +163,21 @@
       "command-palette:打开命令面板": true
     }
   },
-  "active": "d5f625936a25b508",
+  "active": "15b362dae84a9b63",
   "lastOpenFiles": [
-    "document/cloud-native.md",
-    "blog/命名规范.md",
-    "document/python.md",
+    "document/zookeeper.md",
+    "document/golang.md",
     "document/shell.md",
+    "blog/hadoop3.x 部署.md",
+    "blog/pipline.md",
+    "blog/vue学习.md",
+    "blog/wsl安装配置.md",
+    "blog/openresty 例子.md",
+    "blog/命名规范.md",
+    "blog/数据结构适用场景.md",
+    "document/mysql.md",
+    "document/cloud-native.md",
+    "document/python.md",
     "command/redis.md",
     "command/powershell.md",
     "command/mysql.md",
@@ -176,12 +186,7 @@
     "document/lua.md",
     "document/java.md",
     "document/vim.md",
-    "blog/vue学习.md",
     "document/rust.md",
-    "blog/hadoop3.x 部署.md",
-    "blog/openresty 例子.md",
-    "document/mysql.md",
-    "document/zookeeper.md",
     "static/Pasted image 20230324152314.png",
     "static/Pasted image 20230324152143.png",
     "static/Pasted image 20230324152032.png",
@@ -194,13 +199,9 @@
     "static/Pasted image 20230324111453.png",
     "static/Pasted image 20230324111341.png",
     "document/redis.md",
-    "blog/数据结构适用场景.md",
     "static%2FPasted image 20230323151619.png.md",
-    "document/golang.md",
     "static",
     "Pasted image 20230323135602.png.md",
-    "Pasted image 20230323134312.png.md",
-    "document/database.md",
     "未命名.canvas"
   ]
 }
