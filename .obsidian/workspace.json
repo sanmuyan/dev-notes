@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "fa7b291be0899510",
+        "id": "b932f874e688826f",
         "type": "tabs",
         "children": [
           {
-            "id": "6e3bcac91fe9aba1",
+            "id": "70eed22bfdee1c2b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/命名规范.md",
+                "file": "blog/pipline.md",
                 "mode": "source",
                 "source": false
               }
@@ -77,8 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "c115237836eb36b2",
@@ -94,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/命名规范.md",
+                "file": "blog/pipline.md",
                 "collapseAll": true,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -111,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/命名规范.md",
+                "file": "blog/pipline.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/命名规范.md"
+                "file": "blog/pipline.md"
               }
             }
           },
@@ -163,17 +162,19 @@
       "command-palette:打开命令面板": true
     }
   },
-  "active": "15b362dae84a9b63",
+  "active": "70eed22bfdee1c2b",
   "lastOpenFiles": [
+    "blog/pipline.md",
+    "code/Jenkinsfile.md",
+    "code",
+    "blog/openresty 例子.md",
+    "blog/命名规范.md",
     "document/zookeeper.md",
     "document/golang.md",
     "document/shell.md",
     "blog/hadoop3.x 部署.md",
-    "blog/pipline.md",
     "blog/vue学习.md",
     "blog/wsl安装配置.md",
-    "blog/openresty 例子.md",
-    "blog/命名规范.md",
     "blog/数据结构适用场景.md",
     "document/mysql.md",
     "document/cloud-native.md",
@@ -201,7 +202,6 @@
     "document/redis.md",
     "static%2FPasted image 20230323151619.png.md",
     "static",
-    "Pasted image 20230323135602.png.md",
     "未命名.canvas"
   ]
 }
