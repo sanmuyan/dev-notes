@@ -99,3 +99,17 @@ command  2>&1 >/dev/null  # 丢弃标准输出，保留标准错误
 command  1>/dev/null      # 丢弃标准输出，保留标准错误
 command  2>/dev/null      # 保留标准输出，丢弃标准错误
 ```
+
+## 函数
+
+```shell
+
+# 定义函数，可以省略function 关键字
+function get_name(){
+  echo $1
+}
+
+x=$(get_name 123)
+
+echo $x
+```

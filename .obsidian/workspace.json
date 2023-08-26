@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b932f874e688826f",
+        "id": "7c44b5c9d0d0c877",
         "type": "tabs",
         "children": [
           {
-            "id": "70eed22bfdee1c2b",
+            "id": "43354dad97c5200d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/pipline.md",
+                "file": "blog/命名规范.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/pipline.md",
+                "file": "blog/命名规范.md",
                 "collapseAll": true,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/pipline.md",
+                "file": "blog/命名规范.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/pipline.md"
+                "file": "blog/命名规范.md"
               }
             }
           },
@@ -162,32 +162,35 @@
       "command-palette:打开命令面板": true
     }
   },
-  "active": "70eed22bfdee1c2b",
+  "active": "15b362dae84a9b63",
   "lastOpenFiles": [
-    "blog/pipline.md",
-    "code/Jenkinsfile.md",
-    "code",
+    "blog/电脑常用设置.md",
     "blog/openresty 例子.md",
     "blog/命名规范.md",
-    "document/zookeeper.md",
-    "document/golang.md",
-    "document/shell.md",
-    "blog/hadoop3.x 部署.md",
-    "blog/vue学习.md",
-    "blog/wsl安装配置.md",
-    "blog/数据结构适用场景.md",
-    "document/mysql.md",
-    "document/cloud-native.md",
     "document/python.md",
     "command/redis.md",
-    "command/powershell.md",
-    "command/mysql.md",
     "command/linux.md",
+    "command/mysql.md",
+    "document/netwrok.md",
+    "document/java.md",
+    "command/vim.md",
+    "document/golang.md",
+    "document/rust.md",
+    "document/cloud-native.md",
+    "blog/wsl安装配置.md",
+    "blog/数据结构适用场景.md",
+    "blog/pipline.md",
+    "document/shell.md",
+    "document/zookeeper.md",
+    "document/os.md",
+    "command/powershell.md",
+    "document/mysql.md",
+    "code/Jenkinsfile.md",
+    "code",
+    "blog/hadoop3.x 部署.md",
+    "blog/vue学习.md",
     "README.md",
     "document/lua.md",
-    "document/java.md",
-    "document/vim.md",
-    "document/rust.md",
     "static/Pasted image 20230324152314.png",
     "static/Pasted image 20230324152143.png",
     "static/Pasted image 20230324152032.png",
@@ -195,12 +198,9 @@
     "static/Pasted image 20230324150537.png",
     "static/Pasted image 20230324150410.png",
     "static/Pasted image 20230324150219.png",
-    "document/netwrok.md",
     "static/Pasted image 20230324111732.png",
     "static/Pasted image 20230324111453.png",
     "static/Pasted image 20230324111341.png",
-    "document/redis.md",
-    "static%2FPasted image 20230323151619.png.md",
     "static",
     "未命名.canvas"
   ]
