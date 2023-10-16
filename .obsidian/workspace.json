@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0c59f658165f72d6",
+        "id": "201786326afde863",
         "type": "tabs",
         "children": [
           {
-            "id": "a8816edcfa7e9168",
+            "id": "fe5f6788d7f6e393",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -156,11 +156,12 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -172,34 +173,34 @@
       "command-palette:打开命令面板": true
     }
   },
-  "active": "a8816edcfa7e9168",
+  "active": "fe5f6788d7f6e393",
   "lastOpenFiles": [
-    "blog/wsl安装配置.md",
-    "blog/pipline.md",
-    "blog/openresty 例子.md",
-    "blog/数据结构适用场景.md",
-    "blog/怎么搭建一个运维体系.md",
-    "blog/电脑常用设置.md",
+    "blog/运维经理需要具备的素质.md",
     "document/netwrok.md",
+    "document/golang.md",
+    "document/cloud-native.md",
+    "blog/怎么搭建一个运维体系.md",
+    "blog/hadoop3.x 部署.md",
+    "blog/openresty 例子.md",
+    "blog/pipline.md",
+    "blog/电脑常用设置.md",
+    "blog/数据结构适用场景.md",
+    "blog/命名规范.md",
+    "blog/wsl安装配置.md",
     "command/mysql.md",
     "document/zookeeper.md",
     "document/rust.md",
     "document/shell.md",
     "document/redis.md",
     "document/mysql.md",
-    "document/golang.md",
     "document/java.md",
-    "document/cloud-native.md",
     "document/lua.md",
     "document/python.md",
     "document/os.md",
-    "blog/命名规范.md",
     "command/linux.md",
     "README.md",
-    "blog/hadoop3.x 部署.md",
     "blog/vue学习.md",
     "command/redis.md",
-    "command/vim.md",
     "code",
     "static/Pasted image 20230324152314.png",
     "static/Pasted image 20230324152143.png",
