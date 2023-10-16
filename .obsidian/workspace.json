@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/怎么搭建一个运维体系.md",
+                "file": "blog/运维经理需要具备的素质.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/怎么搭建一个运维体系.md",
+                "file": "blog/运维经理需要具备的素质.md",
                 "collapseAll": true,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/怎么搭建一个运维体系.md",
+                "file": "blog/运维经理需要具备的素质.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/怎么搭建一个运维体系.md"
+                "file": "blog/运维经理需要具备的素质.md"
               }
             }
           },
@@ -175,8 +175,8 @@
   },
   "active": "fe5f6788d7f6e393",
   "lastOpenFiles": [
-    "blog/运维经理需要具备的素质.md",
     "blog/怎么搭建一个运维体系.md",
+    "blog/运维经理需要具备的素质.md",
     "document/netwrok.md",
     "document/golang.md",
     "document/cloud-native.md",
