@@ -166,3 +166,25 @@ commit;
 # 回滚事务
 rollback;
 ```
+
+
+## 同步复制
+
+```sql
+# 配置 master
+change master to 
+    master_host = '192.168.1.1',
+    master_port = 3306,
+    master_user = 'replicator',
+    master_password = '123456',
+    master_log_file = 'mysql-bin.000203',
+    master_log_pos = 613683729;
+    
+# 启动 slave
+start slave;
+
+# 设置只读
+set global read_only=1;
+set global super_read_only=1;
+# 
+```
