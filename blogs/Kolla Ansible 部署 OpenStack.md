@@ -103,3 +103,20 @@ cat /etc/kolla/clouds.yaml
 ### 登录
 
 [Dashboard](https://10.222.222.110)
+
+## 块存储
+
+默认情况下不会开启 `cinder`，在 `/etc/kolla/globals.yml` 中添加
+
+```yaml
+enable_cinder: "yes"
+enable_cinder_backend_lvm: "yes"
+cinder_volume_group: "cinder-volumes"
+```
+
+然后再 `storage` 机器中手动创建 `LVM`
+
+```shell
+pvcreate /dev/sdb
+vgcreate cinder-volumes /dev/sdb
+```
