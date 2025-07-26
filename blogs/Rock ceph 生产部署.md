@@ -170,6 +170,19 @@ rook-ceph-osd-prepare-node-2-2d75v                 0/1     Completed   0        
 rook-ceph-osd-prepare-node-3-z9pnh                 0/1     Completed   0             41m
 rook-ceph-osd-prepare-node-4-gq856                 0/1     Completed   0             41m
 ```
+Helm 安装后
+
+- rook-ceph-operator 负责整个集群的自动化生命周期管理（部署、扩容、监控）
+
+创建集群后
+
+- rook-ceph-mon 集群状态，一致性、仲裁
+- rook-ceph-mgr 集群监控与统计，管理入口
+- rook-ceph-osd 存储数据管理，一个 osd 对用一个硬盘
+- csi-cephfsplugin-provisioner 负责创建/删除 PVC 绑定的 CephFS 子卷
+- csi-cephfsplugin 节点插件，运行在每个节点，负责将 CephFS 文件系统挂载到 Pod
+- rook-ceph-exporter 通过 Prometheus 导出集群运行指标
+- rook-ceph-crashcollector 收集故障日志，供后续分析或上传
 
 查看集群状态
 
@@ -279,7 +292,7 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
 ```
 
-创建后会自动创建对用文件系统的 mds
+创建后会自动创建对应文件系统的 mds
 
 ```shell
 kubectl apply -f cfs-default.yaml
