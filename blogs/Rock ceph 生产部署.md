@@ -128,6 +128,7 @@ spec:
 ## 安装验证
 
 查看所有 Pod
+
 ```shell
 kubectl -n rook-ceph get pod                                                                                                   
 NAME                                               READY   STATUS      RESTARTS      AGE
@@ -170,6 +171,7 @@ rook-ceph-osd-prepare-node-2-2d75v                 0/1     Completed   0        
 rook-ceph-osd-prepare-node-3-z9pnh                 0/1     Completed   0             41m
 rook-ceph-osd-prepare-node-4-gq856                 0/1     Completed   0             41m
 ```
+
 Helm 安装后
 
 - rook-ceph-operator 负责整个集群的自动化生命周期管理（部署、扩容、监控）
@@ -242,7 +244,7 @@ kubectl -n rook-ceph get secrets rook-ceph-dashboard-password -ojson |jq -r .dat
 
 ## 配置 CFS
 
-文件系统配置
+### 创建 CFS
 
 `cfs-default.yaml`
 
@@ -266,7 +268,22 @@ spec:
     activeStandby: true
 ```
 
-默认 StorageClass 配置
+创建后会自动创建对应文件系统的 mds
+
+```shell
+kubectl apply -f cfs-default.yaml
+kubectl apply -f cfs-default-sc.yaml
+
+kubectl -n rook-ceph get pod |grep rook-ceph-mds-cfs-defaul
+rook-ceph-mds-cfs-default-a-5654b85f5b-fjl4g       2/2     Running     0              5m16s
+rook-ceph-mds-cfs-default-b-56cfd48488-5mvh6       2/2     Running     0              5m15s
+
+kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- ceph fs ls 
+
+name: cfs-default, metadata pool: cfs-default-metadata, data pools: [cfs-default-replicated ]
+```
+
+### CSI 配置
 
 `cfs-default-sc.yaml`
 
@@ -292,22 +309,7 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
 ```
 
-创建后会自动创建对应文件系统的 mds
-
-```shell
-kubectl apply -f cfs-default.yaml
-kubectl apply -f cfs-default-sc.yaml
-
-kubectl -n rook-ceph get pod |grep rook-ceph-mds-cfs-defaul
-rook-ceph-mds-cfs-default-a-5654b85f5b-fjl4g       2/2     Running     0              5m16s
-rook-ceph-mds-cfs-default-b-56cfd48488-5mvh6       2/2     Running     0              5m15s
-
-kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- ceph fs ls 
-
-name: cfs-default, metadata pool: cfs-default-metadata, data pools: [cfs-default-replicated ]
-```
-
-测试应用配置
+### 测试应用
 
 `test-app.yaml`
 
@@ -366,8 +368,7 @@ Filesystem                                                                      
 
 ## 配置 NFS
 
-- NFSServer
-- NFS CephBlockPool
+### 导出 NFS
 
 `nfs-server-default.yaml`
 
@@ -424,7 +425,10 @@ NAME                                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT
 rook-ceph-nfs-nfs-server-default-a   ClusterIP   10.43.4.13   <none>        2049/TCP,9587/TCP   4m6s
 ```
 
-下面需要 Ceph 导出 NFS
+### 手动挂载
+
+需要手动导出 NFS
+
 ```shell
 kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- bash
 # 查看刚才创建的 nfs cluster
@@ -439,4 +443,290 @@ ceph fs subvolume info cfs-default nfs-server-default --group_name nfs
 ceph nfs export create cephfs nfs-server-default /nfsroot cfs-default /volumes/nfs/<subvolume_path>
 ```
 
-导出完成后即可挂载 NFS `mount.nfs 10.43.4.13:/nfsroot /mnt`
+导出完成后即可手动挂载 NFS `mount.nfs 10.43.4.13:/nfsroot /mnt`
+
+### CSI 配置
+
+`nfs-default-sc.yaml`
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-default
+provisioner: rook-ceph.nfs.csi.ceph.com
+parameters:
+  nfsCluster: nfs-server-default
+  server: rook-ceph-nfs-nfs-server-default-a
+  clusterID: rook-ceph
+  fsName: cfs-default
+  pool: cfs-default-replicated
+
+  csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+  csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+  csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+  csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+  csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+mountOptions:
+```
+
+### 测试应用
+
+`test-app.yaml`
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-test-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs-default
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app
+  namespace: default
+  labels:
+    k8s-app: test-app
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      k8s-app: test-app
+  template:
+    metadata:
+      labels:
+        k8s-app: test-app
+    spec:
+      containers:
+      - name: app
+        image: registry.cn-hangzhou.aliyuncs.com/sanmuyan/ubuntu:22.04-base-20250427
+        imagePullPolicy: Always
+        volumeMounts:
+         - name: nfs-test
+           mountPath: /nfs-test
+      volumes:
+      - name: nfs-test
+        persistentVolumeClaim:
+          claimName: nfs-test-pvc
+          readOnly: false
+```
+
+```yaml
+kubectl exec deployments/test-app -i -t -- df -Bg /nfs-test
+Filesystem                                                                                                    1G-blocks  Used Available Use% Mounted on
+rook-ceph-nfs-nfs-server-default-a:/0001-0009-rook-ceph-0000000000000003-fb555e8c-68bf-4c4a-9b6a-6d7fe7bbc99f       19G    0G       19G   0% /nfs-test
+```
+
+## 配置 RBD
+
+### 创建 RBD Pool
+
+`rbdpool-default.yaml`
+
+```yaml
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: rbdpool-default
+  namespace: rook-ceph
+spec:
+  failureDomain: host
+  replicated:
+    size: 3
+```
+
+### CSI 配置
+
+`rbd-default-sc.yaml`
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+   name: rbd-default
+provisioner: rook-ceph.rbd.csi.ceph.com
+parameters:
+    clusterID: rook-ceph
+    pool: rbdpool-default
+    imageFormat: "2"
+    imageFeatures: layering
+    csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+    csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+    csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+    csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+    csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+    csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+    csi.storage.k8s.io/fstype: ext4
+
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+```
+
+### 测试应用
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rbd-test-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: rbd-default
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app
+  namespace: default
+  labels:
+    k8s-app: test-app
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: test-app
+  template:
+    metadata:
+      labels:
+        k8s-app: test-app
+    spec:
+      containers:
+      - name: app
+        image: registry.cn-hangzhou.aliyuncs.com/sanmuyan/ubuntu:22.04-base-20250427
+        imagePullPolicy: Always
+        volumeMounts:
+         - name: rbd-test
+           mountPath: /rbd-test
+      volumes:
+      - name: rbd-test
+        persistentVolumeClaim:
+          claimName: rbd-test-pvc
+          readOnly: false
+```
+
+## 配置 COS
+
+### 创建 COS
+
+`cos-default.yaml`
+
+```yaml
+apiVersion: ceph.rook.io/v1
+kind: CephObjectStore
+metadata:
+  name: cos-default
+  namespace: rook-ceph
+spec:
+  metadataPool:
+    failureDomain: host
+    replicated:
+      size: 3
+  dataPool:
+    failureDomain: host
+    erasureCoded:
+      dataChunks: 2
+      codingChunks: 1
+  preservePoolsOnDelete: true
+  gateway:
+    port: 80
+    instances: 1
+```
+
+创建后会自动创建对应的 RGW
+
+```shell
+kubectl -n rook-ceph get pod |grep rgw
+rook-ceph-rgw-cos-default-a-6fb45f9657-dzg6l              2/2     Running     0              4m40s
+```
+
+### 配置 CSI
+
+`cos-bucket-default-sc.yaml`
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+   name: cos-bucket-default
+provisioner: rook-ceph.ceph.rook.io/bucket
+reclaimPolicy: Delete
+parameters:
+  objectStoreName: cos-default
+  objectStoreNamespace: rook-ceph
+```
+
+### 创建 Bucket
+
+`cos-bucket-test.yaml`
+
+```yaml
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: cos-bucket-test
+spec:
+  generateBucketName: cos-bucket-test
+  storageClassName: cos-bucket-default
+```
+
+### 访问测试
+
+配置访问凭据
+
+```shell
+export AWS_HOST=$(kubectl -n default get cm cos-bucket-test -o jsonpath='{.data.BUCKET_HOST}')
+export PORT=$(kubectl -n default get cm cos-bucket-test -o jsonpath='{.data.BUCKET_PORT}')
+export BUCKET_NAME=$(kubectl -n default get cm cos-bucket-test -o jsonpath='{.data.BUCKET_NAME}')
+export AWS_ACCESS_KEY_ID=$(kubectl -n default get secret cos-bucket-test -o jsonpath='{.data.AWS_ACCESS_KEY_ID}' | base64 --decode)
+export AWS_SECRET_ACCESS_KEY=$(kubectl -n default get secret cos-bucket-test -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}' | base64 --decode)
+
+mkdir ~/.aws
+cat > ~/.aws/credentials << EOF
+[default]
+aws_access_key_id = ${AWS_ACCESS_KEY_ID}
+aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
+EOF
+
+```
+
+获取访问端点
+
+```shell
+kubectl -n rook-ceph get svc rook-ceph-rgw-cos-default
+NAME                        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+rook-ceph-rgw-cos-default   NodePort   10.43.36.117   <none>        80:32152/TCP   49m
+```
+
+访问测试
+
+```shell
+s5cmd --endpoint-url http://10.43.36.117 ls
+2025/07/28 04:47:17  s3://cos-bucket-test-35bcb1ac-2a75-416f-a078-5aa44c8021fa
+
+echo "test file" >test.txt
+
+s5cmd --endpoint-url http://10.43.36.117 cp test.txt s3://cos-bucket-test-35bcb1ac-2a75-416f-a078-5aa44c8021fa
+cp test.txt s3://cos-bucket-test-35bcb1ac-2a75-416f-a078-5aa44c8021fa/test.txt
+
+s5cmd --endpoint-url http://10.43.36.117 cat s3://cos-bucket-test-35bcb1ac-2a75-416f-a078-5aa44c8021fa/test.txt
+test file
+```
