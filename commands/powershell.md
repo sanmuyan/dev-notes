@@ -29,6 +29,8 @@ $env:ENV_NAME = "dev"
 # 设置永久环境变量
 [Environment]::SetEnvironmentVariable("ENV_NAME","dev","User")
 [Environment]::GetEnvironmentVariable("ENV_NAME")
+# 关闭更新提示
+[System.Environment]::SetEnvironmentVariable("POWERSHELL_UPDATECHECK", "Off", "Machine")
 ```
 
 ## 网络设置
