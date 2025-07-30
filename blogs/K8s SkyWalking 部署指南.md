@@ -123,6 +123,8 @@ spec:
 
 部署 opentelemetry-collector 采集 K8s 集群数据，部署完后可以在 skywalking-ui 中查 K8s 集群状态
 
+注意权限问题，ClusterRole 可能需要更多权限
+
 ```shell
 kubectl apply -f otel-collector.yaml -n skywalking-system
 ```
@@ -240,7 +242,7 @@ spec:
         app: opentelemetry
         component: otel-collector
     spec:
-      serviceAccountName: skywalking-rover
+      serviceAccountName: otel-collector
       serviceAccount: otel-collector
       containers:
       - command:
