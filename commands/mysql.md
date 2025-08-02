@@ -1,4 +1,4 @@
-# Mysql
+# MySQL
 
 ## 权限管理
 
