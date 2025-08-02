@@ -186,7 +186,7 @@ SQL 标准定义了四个隔离级别：
 - **优化器：** 按照 MySQL 认为最优的方案去执行。
 - **执行器：** 执行语句，然后从存储引擎返回数据。 -
 
-![alt text](../assets/img/pasted-img32.png)
+![alt text](../assets/img/pasted-img-32.png)
 
 简单来说 MySQL 主要分为 Server 层和存储引擎层：
 
