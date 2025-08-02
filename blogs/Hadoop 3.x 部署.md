@@ -5,6 +5,7 @@
 ### HDFS
 
 Hadoop 分布式文件系统，HDFS 是具有高容错性高吞吐性的文件系统，并且可以部署在低成本的硬件之上
+
 ![alt text](../assets/img/pasted-img.png)
 
 - NameNode: 管理文件系统元数据
