@@ -1,5 +1,6 @@
 {
     "markdown.copyFiles.destination": {
         "**/*": "${documentWorkspaceFolder}/assets/img/pasted-img.${fileName/(.*)\\.(.*)/$2/}"
-    }
+    },
+    "files.eol": "\n"
 }
