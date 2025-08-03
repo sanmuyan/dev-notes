@@ -47,7 +47,8 @@ Enable-PSRemoting
 # 查看远程配置
 Get-PSSessionConfiguration
 # 创建远程会话
-New-PSSession -ComputerName 192.168.128.1 -Credential
+$credential = New-Object System.Management.Automation.PSCredential ("Administrator", (ConvertTo-SecureString "" -AsPlainText -Force))
+New-PSSession -ComputerName 192.168.128.1 -Credential $credential
 ```
 
 ## WORKGROUP
