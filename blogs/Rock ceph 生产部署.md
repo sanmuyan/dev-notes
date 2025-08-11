@@ -1,17 +1,19 @@
 # Rock Ceph 生产部署
 
+`Rock v1.17.6` 对应的 Ceph 版本是`Squid 19.x`
+
 ## 节点规划
 
 - OS `Ubuntu 22.04`
 
-|K8s 节点|角色|标签|
-|-|-|-|
-|master-node-1|mon/mgr|ceph-mon-node=node/ceph-mgr-node=node/ceph-provisioner-node=node|
-|master-node-2|mon/mgr|ceph-mon-node=node/ceph-mgr-node=node/ceph-provisioner-node=node|
-|master-node-3|mon/mgr|ceph-mon-node=node/ceph-provisioner-node=node|
-|storage-node-1|storage|ceph-storage-node=node|
-|storage-node-2|storage|ceph-storage-node=node|
-|storage-node-3|storage|ceph-storage-node=node|
+| K8s 节点 | 角色      | 标签                                                               |
+| ------ | ------- | ---------------------------------------------------------------- |
+| node-1 | mon/mgr | ceph-mon-node=node/ceph-mgr-node=node/ceph-provisioner-node=node |
+| node-2 | mon/mgr | ceph-mon-node=node/ceph-mgr-node=node/ceph-provisioner-node=node |
+| node-3 | mon/mgr | ceph-mon-node=node/ceph-provisioner-node=node                    |
+| node-4 | storage | ceph-storage-node=node                                           |
+| node-5 | storage | ceph-storage-node=node                                           |
+| node-6 | storage | ceph-storage-node=node                                           |
 
 ```shell
 apt install nfs-common
@@ -115,13 +117,13 @@ spec:
     useAllNodes: false
     useAllDevices: false
     nodes:
-      - name: "storage-node-1"
+      - name: "node-4"
         devices:
           - name: "sdc"
-      - name: "storage-node-2"
+      - name: "node-5"
         devices:
           - name: "sdc"
-      - name: "storage-node-3"
+      - name: "node-6"
         deviceFilter: "^sd.*$"
 ```
 
@@ -717,6 +719,8 @@ rook-ceph-rgw-cos-default   NodePort   10.43.36.117   <none>        80:32152/TCP
 ```
 
 访问测试
+
+[s5cmd 下载地址]( https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-64bit.tar.gz)
 
 ```shell
 s5cmd --endpoint-url http://10.43.36.117 ls
