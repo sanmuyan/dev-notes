@@ -66,7 +66,7 @@ vrrp_instance VI_1 {
 
 `nginx.conf`
 
-```conf
+```nginx
 stream {
     upstream rtk2_server {
         least_conn;
