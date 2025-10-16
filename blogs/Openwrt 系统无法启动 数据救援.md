@@ -1,15 +1,8 @@
 # Openwrt 系统无法启动 数据救援
 
-## 分区情况
+## 基本情况
 
-`Openwrt` 文件系统挂载流程如下（已经简化，实际挂载过程比这个复杂）
-
-| 挂载点      | 用途       | 挂载命令                                                                                                            |
-| -------- | -------- | --------------------------------------------------------------------------------------------------------------- |
-| /row     | 只读固件     | mount /dev/sda2 /row                                                                                            |
-| /overlay | 用户数据     | losetup -o 96010240 /dev/loop0 /dev/sdb2 && mount /dev/loop0 /overlay                                           |
-| /        | 合并后的文件系统 | mount -o noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/upper -t overlay "overlayfs:/overlay" /mnt |
-
+我的`Openwrt`系统物理分区实际就两个，一个是启动分区，一个包含`rootfs` `rootfs_data` 的分区。如果直接挂载`/dev/sda2`只能看到只读的固件文件
 
 ```shell
 fdisk -l
@@ -42,6 +35,17 @@ Units: sectors of 1 * 4096 = 4096 bytes
 Sector size (logical/physical): 4096 bytes / 4096 bytes
 I/O size (minimum/optimal): 4096 bytes / 4096 bytes
 ```
+
+## 分区情况
+
+`Openwrt` 文件系统挂载流程如下（已经简化，实际挂载过程比这个复杂）
+
+| 挂载点      | 用途       | 挂载命令                                                                                                            |
+| -------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| /row     | 只读固件     | mount /dev/sda2 /row                                                                                            |
+| /overlay | 用户数据     | losetup -o 96010240 /dev/loop0 /dev/sdb2 && mount /dev/loop0 /overlay                                           |
+| /        | 合并后的文件系统 | mount -o noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/upper -t overlay "overlayfs:/overlay" /mnt |
+
 
 ```shell
 df -T
