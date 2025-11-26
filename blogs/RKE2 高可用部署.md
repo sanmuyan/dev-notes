@@ -106,10 +106,9 @@ tls-san:
 system-default-registry: registry.cn-hangzhou.aliyuncs.com" | \
 sudo tee /etc/rancher/rke2/config.yaml > /dev/null
 
-curl -sfL https://rancher-mirror.rancher.cn/rke2/install.sh | INSTALL_RKE2_MIRROR=cn INSTALL_RKE2_VERSION=v1.30.13-rke2r1 sh -
+curl -sfL https://rancher-mirror.rancher.cn/rke2/install.sh | INSTALL_RKE2_MIRROR=cn INSTALL_RKE2_VERSION=v1.30.13+rke2r1 sh -
 
 systemctl enable rke2-server
-
 systemctl start rke2-server
 ```
 
@@ -129,15 +128,10 @@ tls-san:
 system-default-registry: registry.cn-hangzhou.aliyuncs.com" | \
 sudo tee /etc/rancher/rke2/config.yaml > /dev/null
 
-curl -sfL https://rancher-mirror.rancher.cn/rke2/install.sh | INSTALL_RKE2_MIRROR=cn INSTALL_RKE2_VERSION=v1.30.13-rke2r1 sh -
+curl -sfL https://rancher-mirror.rancher.cn/rke2/install.sh | INSTALL_RKE2_MIRROR=cn INSTALL_RKE2_VERSION=v1.30.13+rke2r1 sh -
 
 systemctl enable rke2-server
-
 systemctl start rke2-server
-
-systemctl enable rke2-agent.service
-
-systemctl start rke2-agent.service
 ```
 
 ## Agent
@@ -150,10 +144,9 @@ token: rke2-create-token
 system-default-registry: registry.cn-hangzhou.aliyuncs.com" | \
 sudo tee /etc/rancher/rke2/config.yaml > /dev/null
 
-curl -sfL https://rancher-mirror.rancher.cn/rke2/install.sh | INSTALL_RKE2_MIRROR=cn INSTALL_RKE2_VERSION=v1.30.13-rke2r1 INSTALL_RKE2_TYPE="agent" sh -
+curl -sfL https://rancher-mirror.rancher.cn/rke2/install.sh | INSTALL_RKE2_MIRROR=cn INSTALL_RKE2_VERSION=v1.30.13+rke2r1 INSTALL_RKE2_TYPE="agent" sh -
 
 systemctl enable rke2-agent
-
 systemctl start rke2-agent
 ```
 
